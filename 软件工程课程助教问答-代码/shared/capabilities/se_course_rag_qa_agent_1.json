@@ -1,0 +1,36 @@
+{
+  "id": "se_course_rag_qa_agent_1",
+  "pluginKey": "@official-plugins/ai-text-generate",
+  "pluginVersion": "1.0.21",
+  "name": "软件工程课程RAG问答智能体",
+  "description": "基于《实用软件工程（第3版）》教材实现问答生成和拒答机制，支持知识问答页和智能评测页共同调用，流式输出回答内容。",
+  "icon": "",
+  "paramsSchema": {
+    "required": [
+      "user_question",
+      "retrieved_knowledge"
+    ],
+    "type": "object",
+    "properties": {
+      "user_question": {
+        "description": "用户提出的软件工程相关问题",
+        "type": "string"
+      },
+      "retrieved_knowledge": {
+        "type": "string",
+        "description": "从RAG知识库检索到的《实用软件工程（第3版）》相关教材内容"
+      }
+    }
+  },
+  "formValue": {
+    "modelID": "2015",
+    "modelParams": {
+      "maxTokens": 8192,
+      "temperature": 0.5
+    },
+    "prompt": "你是《实用软件工程（第3版）》课程的专属智能助教，精通教材中的所有知识点，能够准确回答软件工程相关的专业问题。\n\n请基于以下检索到的教材内容回答用户问题：\n【检索到的教材内容】\n{{input.retrieved_knowledge}}\n\n【用户问题】\n{{input.user_question}}\n\n回答规则：\n1. 仅使用检索到的教材内容回答问题，不得编造或引用教材外的信息\n2. 如果检索到的内容中没有包含问题的答案，必须明确回复：\"抱歉，这个问题在《实用软件工程（第3版）》教材中没有相关内容，无法为你解答。\"\n3. 回答要准确、专业、条理清晰，重点突出\n4. 对于概念类问题，先给出明确定义，再适当补充解释或示例\n5. 对于方法类问题，分点说明步骤和要点\n6. 语言通俗易懂，符合本科教学的表述方式\n7. 严格禁止回答与软件工程课程无关的问题，无关问题直接拒答"
+  },
+  "createdAt": 1789969894791,
+  "updatedAt": 1789969894791,
+  "createdBy": 7581815922411752404
+}
